@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare HMS - Hospital Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">✚</div>
+            <div>
+                <h2>MediCare</h2>
+                <span>Hospital HMS</span>
+            </div>
+        </div>
+
+        <nav class="nav">
+
+            <p class="nav-title">MAIN</p>
+
+            <button class="nav-item active" data-page="dashboard">
+                <span>▦</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item" data-page="patients">
+                <span>♙</span>
+                Patients
+            </button>
+
+            <button class="nav-item" data-page="doctors">
+                <span>⚕</span>
+                Doctors
+            </button>
+
+            <button class="nav-item" data-page="appointments">
+                <span>▣</span>
+                Appointments
+            </button>
+
+            <p class="nav-title">MANAGEMENT</p>
+
+            <button class="nav-item" data-page="departments">
+                <span>▤</span>
+                Departments
+            </button>
+
+            <button class="nav-item" data-page="billing">
+                <span>₹</span>
+                Billing
+            </button>
+
+            <button class="nav-item" data-page="pharmacy">
+                <span>⚗</span>
+                Pharmacy
+            </button>
+
+            <button class="nav-item" data-page="staff">
+                <span>♟</span>
+                Staff
+            </button>
+
+            <button class="nav-item" data-page="reports">
+                <span>▥</span>
+                Reports
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button class="nav-item">
+                <span>⚙</span>
+                Settings
+            </button>
+
+            <button class="nav-item logout" id="logoutBtn">
+                <span>↪</span>
+                Logout
+            </button>
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <button class="menu-btn" id="menuBtn">☰</button>
+
+            <div class="header-title">
+                <h1 id="pageTitle">Dashboard</h1>
+                <p id="pageSubtitle">Hospital overview and daily activities</p>
+            </div>
+
+            <div class="header-actions">
+
+                <div class="search">
+                    <span>⌕</span>
+                    <input type="text" id="globalSearch" placeholder="Search...">
+                </div>
+
+                <button class="icon-btn notification" title="Notifications">
+                    🔔
+                    <i></i>
+                </button>
+
+                <div class="profile">
+                    <div class="avatar">DR</div>
+                    <div class="profile-info">
+                        <strong>Dr. Rahul Sharma</strong>
+                        <span>Administrator</span>
+                    </div>
+                    <span class="profile-arrow">⌄</span>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <!-- DASHBOARD -->
+            <div class="page active" id="dashboard">
+
+                <div class="welcome">
+                    <div>
+                        <h2>Good Morning, Dr. Rahul 👋</h2>
+                        <p>Here's what's happening at your hospital today.</p>
+                    </div>
+
+                    <button class="primary-btn" id="dashboardAppointmentBtn">
+                        + New Appointment
+                    </button>
+                </div>
+
+                <!-- STAT CARDS -->
+                <div class="stats-grid">
+
+                    <div class="stat-card blue">
+                        <div class="stat-top">
+                            <div class="stat-icon">♙</div>
+                            <span class="trend up">+12.5%</span>
+                        </div>
+                        <p>Total Patients</p>
+                        <h3>2,548</h3>
+                        <small>Compared to last month</small>
+                    </div>
+
+                    <div class="stat-card green">
+                        <div class="stat-top">
+                            <div class="stat-icon">⚕</div>
+                            <span class="trend up">+4.2%</span>
+                        </div>
+                        <p>Total Doctors</p>
+                        <h3>86</h3>
+                        <small>8 doctors on leave</small>
+                    </div>
+
+                    <div class="stat-card orange">
+                        <div class="stat-top">
+                            <div class="stat-icon">▣</div>
+                            <span class="trend up">+8.7%</span>
+                        </div>
+                        <p>Appointments</p>
+                        <h3>124</h3>
+                        <small>32 remaining today</small>
+                    </div>
+
+                    <div class="stat-card purple">
+                        <div class="stat-top">
+                            <div class="stat-icon">₹</div>
+                            <span class="trend up">+6.3%</span>
+                        </div>
+                        <p>Total Revenue</p>
+                        <h3>₹8.42L</h3>
+                        <small>Current month</small>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <!-- APPOINTMENTS -->
+                    <div class="card appointments-card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Today's Appointments</h3>
+                                <p>Scheduled appointments for today</p>
+                            </div>
+                            <button class="text-btn" data-page-link="appointments">
+                                View All →
+                            </button>
+                        </div>
+
+                        <div class="appointment-list">
+
+                            <div class="appointment-row">
+                                <div class="patient-avatar pink">AS</div>
+                                <div class="appointment-info">
+                                    <strong>Ananya Singh</strong>
+                                    <span>Cardiology • Dr. Mehta</span>
+                                </div>
+                                <div class="appointment-time">
+                                    <strong>09:30 AM</strong>
+                                    <span class="status confirmed">Confirmed</span>
+                                </div>
+                            </div>
+
+                            <div class="appointment-row">
+                                <div class="patient-avatar blue">RK</div>
+                                <div class="appointment-info">
+                                    <strong>Rajesh Kumar</strong>
+                                    <span>Neurology • Dr. Patel</span>
+                                </div>
+                                <div class="appointment-time">
+                                    <strong>10:15 AM</strong>
+                                    <span class="status pending">Pending</span>
+                                </div>
+                            </div>
+
+                            <div class="appointment-row">
+                                <div class="patient-avatar green">PS</div>
+                                <div class="appointment-info">
+                                    <strong>Priya Shah</strong>
+                                    <span>Orthopedics • Dr. Rao</span>
+                                </div>
+                                <div class="appointment-time">
+                                    <strong>11:00 AM</strong>
+                                    <span class="status confirmed">Confirmed</span>
+                                </div>
+                            </div>
+
+                            <div class="appointment-row">
+                                <div class="patient-avatar yellow">VM</div>
+                                <div class="appointment-info">
+                                    <strong>Vikram Mehta</strong>
+                                    <span>Dermatology • Dr. Joshi</span>
+                                </div>
+                                <div class="appointment-time">
+                                    <strong>11:45 AM</strong>
+                                    <span class="status completed">Completed</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- DEPARTMENT -->
+                    <div class="card department-card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Departments</h3>
+                                <p>Patient distribution</p>
+                            </div>
+                            <button class="more-btn">•••</button>
+                        </div>
+
+                        <div class="donut-container">
+                            <div class="donut">
+                                <div class="donut-center">
+                                    <strong>548</strong>
+                                    <span>Patients</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="legend">
+                            <div>
+                                <span><i class="dot blue-dot"></i> Cardiology</span>
+                                <strong>32%</strong>
+                            </div>
+                            <div>
+                                <span><i class="dot green-dot"></i> Neurology</span>
+                                <strong>24%</strong>
+                            </div>
+                            <div>
+                                <span><i class="dot orange-dot"></i> Orthopedics</span>
+                                <strong>18%</strong>
+                            </div>
+                            <div>
+                                <span><i class="dot purple-dot"></i> Others</span>
+                                <strong>26%</strong>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- LOWER DASHBOARD -->
+                <div class="dashboard-grid lower">
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Revenue Overview</h3>
+                                <p>Monthly revenue performance</p>
+                            </div>
+
+                            <select class="select">
+                                <option>2026</option>
+                                <option>2025</option>
+                            </select>
+                        </div>
+
+                        <div class="chart">
+
+                            <div class="chart-y">
+                                <span>₹10L</span>
+                                <span>₹8L</span>
+                                <span>₹6L</span>
+                                <span>₹4L</span>
+                                <span>₹2L</span>
+                                <span>₹0</span>
+                            </div>
+
+                            <div class="chart-area">
+
+                                <div class="grid-line"></div>
+                                <div class="grid-line"></div>
+                                <div class="grid-line"></div>
+                                <div class="grid-line"></div>
+                                <div class="grid-line"></div>
+
+                                <svg viewBox="0 0 700 250" preserveAspectRatio="none">
+                                    <defs>
+                                        <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#2563eb" stop-opacity=".25"/>
+                                            <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <path
+                                        d="M0,205 C45,190 55,165 110,175
+                                        S175,125 220,145
+                                        S280,120 330,130
+                                        S385,90 430,105
+                                        S490,70 535,92
+                                        S600,48 700,58
+                                        L700,250 L0,250 Z"
+                                        fill="url(#areaGradient)">
+                                    </path>
+
+                                    <path
+                                        d="M0,205 C45,190 55,165 110,175
+                                        S175,125 220,145
+                                        S280,120 330,130
+                                        S385,90 430,105
+                                        S490,70 535,92
+                                        S600,48 700,58"
+                                        fill="none"
+                                        stroke="#2563eb"
+                                        stroke-width="4"
+                                        stroke-linecap="round">
+                                    </path>
+                                </svg>
+
+                                <div class="chart-months">
+                                    <span>Jan</span>
+                                    <span>Feb</span>
+                                    <span>Mar</span>
+                                    <span>Apr</span>
+                                    <span>May</span>
+                                    <span>Jun</span>
+                                    <span>Jul</span>
+                                    <span>Aug</span>
+                                    <span>Sep</span>
+                                    <span>Oct</span>
+                                    <span>Nov</span>
+                                    <span>Dec</span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Bed Availability</h3>
+                                <p>Current bed occupancy</p>
+                            </div>
+                            <button class="text-btn">Manage</button>
+                        </div>
+
+                        <div class="bed-overview">
+                            <div class="bed-progress">
+                                <div class="progress-ring">
+                                    <div>
+                                        <strong>78%</strong>
+                                        <span>Occupied</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bed-details">
+                                <div>
+                                    <span class="bed-color available"></span>
+                                    <span>Available</span>
+                                    <strong>68</strong>
+                                </div>
+
+                                <div>
+                                    <span class="bed-color occupied"></span>
+                                    <span>Occupied</span>
+                                    <strong>242</strong>
+                                </div>
+
+                                <div>
+                                    <span class="bed-color maintenance"></span>
+                                    <span>Maintenance</span>
+                                    <strong>10</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PATIENTS -->
+            <div class="page" id="patients">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Patients</h2>
+                        <p>Manage patient records and information.</p>
+                    </div>
+
+                    <button class="primary-btn" id="addPatientBtn">
+                        + Add Patient
+                    </button>
+                </div>
+
+                <div class="card table-card">
+
+                    <div class="table-toolbar">
+                        <div class="table-search">
+                            🔍
+                            <input id="patientSearch" type="text" placeholder="Search patients...">
+                        </div>
+
+                        <select class="select">
+                            <option>All Departments</option>
+                            <option>Cardiology</option>
+                            <option>Neurology</option>
+                            <option>Orthopedics</option>
+                        </select>
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table id="patientTable">
+
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Patient ID</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Department</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        <div class="table-person">
+                                            <div class="small-avatar pink">AS</div>
+                                            <div>
+                                                <strong>Ananya Singh</strong>
+                                                <span>ananya@email.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>#PT-10245</td>
+                                    <td>32</td>
+                                    <td>Female</td>
+                                    <td>Cardiology</td>
+                                    <td>+91 98765 43210</td>
+                                    <td><span class="status confirmed">Active</span></td>
+                                    <td><button class="action-btn">•••</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="table-person">
+                                            <div class="small-avatar blue">RK</div>
+                                            <div>
+                                                <strong>Rajesh Kumar</strong>
+                                                <span>rajesh@email.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>#PT-10244</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>Neurology</td>
+                                    <td>+91 98111 22334</td>
+                                    <td><span class="status confirmed">Active</span></td>
+                                    <td><button class="action-btn">•••</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="table-person">
+                                            <div class="small-avatar green">PS</div>
+                                            <div>
+                                                <strong>Priya Shah</strong>
+                                                <span>priya@email.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>#PT-10243</td>
+                                    <td>28</td>
+                                    <td>Female</td>
+                                    <td>Orthopedics</td>
+                                    <td>+91 97654 11223</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                    <td><button class="action-btn">•••</button></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="table-person">
+                                            <div class="small-avatar yellow">VM</div>
+                                            <div>
+                                                <strong>Vikram Mehta</strong>
+                                                <span>vikram@email.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>#PT-10242</td>
+                                    <td>51</td>
+                                    <td>Male</td>
+                                    <td>Dermatology</td>
+                                    <td>+91 99887 66554</td>
+                                    <td><span class="status completed">Discharged</span></td>
+                                    <td><button class="action-btn">•••</button></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- DOCTORS -->
+            <div class="page" id="doctors">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Doctors</h2>
+                        <p>Manage doctors and their availability.</p>
+                    </div>
+
+                    <button class="primary-btn">+ Add Doctor</button>
+                </div>
+
+                <div class="doctor-grid">
+
+                    <div class="doctor-card">
+                        <div class="doctor-top">
+                            <div class="doctor-avatar">RM</div>
+                            <span class="online"></span>
+                        </div>
+                        <h3>Dr. Rajiv Mehta</h3>
+                        <p>Cardiologist</p>
+                        <div class="doctor-meta">
+                            <span>★ 4.9</span>
+                            <span>12 Years</span>
+                        </div>
+                        <button class="outline-btn">View Profile</button>
+                    </div>
+
+                    <div class="doctor-card">
+                        <div class="doctor-top">
+                            <div class="doctor-avatar purple-bg">AP</div>
+                            <span class="online"></span>
+                        </div>
+                        <h3>Dr. Anil Patel</h3>
+                        <p>Neurologist</p>
+                        <div class="doctor-meta">
+                            <span>★ 4.8</span>
+                            <span>10 Years</span>
+                        </div>
+                        <button class="outline-btn">View Profile</button>
+                    </div>
+
+                    <div class="doctor-card">
+                        <div class="doctor-top">
+                            <div class="doctor-avatar green-bg">SR</div>
+                            <span class="offline"></span>
+                        </div>
+                        <h3>Dr. Sneha Rao</h3>
+                        <p>Orthopedic Surgeon</p>
+                        <div class="doctor-meta">
+                            <span>★ 4.9</span>
+                            <span>14 Years</span>
+                        </div>
+                        <button class="outline-btn">View Profile</button>
+                    </div>
+
+                    <div class="doctor-card">
+                        <div class="doctor-top">
+                            <div class="doctor-avatar orange-bg">NJ</div>
+                            <span class="online"></span>
+                        </div>
+                        <h3>Dr. Neha Joshi</h3>
+                        <p>Dermatologist</p>
+                        <div class="doctor-meta">
+                            <span>★ 4.7</span>
+                            <span>8 Years</span>
+                        </div>
+                        <button class="outline-btn">View Profile</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- APPOINTMENTS -->
+            <div class="page" id="appointments">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Appointments</h2>
+                        <p>Schedule and manage patient appointments.</p>
+                    </div>
+
+                    <button class="primary-btn" id="newAppointmentBtn">
+                        + New Appointment
+                    </button>
+                </div>
+
+                <div class="card">
+
+                    <div class="calendar-header">
+                        <button class="calendar-arrow">‹</button>
+                        <h3>October 2026</h3>
+                        <button class="calendar-arrow">›</button>
+                    </div>
+
+                    <div class="calendar-days">
+                        <span>Sun</span>
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                    </div>
+
+                    <div class="calendar-grid">
+                        <span class="muted">27</span>
+                        <span class="muted">28</span>
+                        <span class="muted">29</span>
+                        <span class="muted">30</span>
+                        <span>1</span>
+                        <span>2</span>
+                        <span>3</span>
+
+                        <span>4</span>
+                        <span>5</span>
+                        <span>6</span>
+                        <span>7</span>
+                        <span>8</span>
+                        <span class="today">9</span>
+                        <span>10</span>
+
+                        <span>11</span>
+                        <span>12</span>
+                        <span>13</span>
+                        <span>14</span>
+                        <span>15</span>
+                        <span>16</span>
+                        <span>17</span>
+
+                        <span>18</span>
+                        <span>19</span>
+                        <span>20</span>
+                        <span>21</span>
+                        <span>22</span>
+                        <span>23</span>
+                        <span>24</span>
+
+                        <span>25</span>
+                        <span>26</span>
+                        <span>27</span>
+                        <span>28</span>
+                        <span>29</span>
+                        <span>30</span>
+                        <span>31</span>
+                    </div>
+
+                </div>
+
+                <div class="card appointment-table-card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Upcoming Appointments</h3>
+                            <p>Next scheduled appointments</p>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Department</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>Ananya Singh</td>
+                                    <td>Dr. Rajiv Mehta</td>
+                                    <td>Cardiology</td>
+                                    <td>Oct 09, 2026</td>
+                                    <td>09:30 AM</td>
+                                    <td><span class="status confirmed">Confirmed</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Rajesh Kumar</td>
+                                    <td>Dr. Anil Patel</td>
+                                    <td>Neurology</td>
+                                    <td>Oct 09, 2026</td>
+                                    <td>10:15 AM</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Priya Shah</td>
+                                    <td>Dr. Sneha Rao</td>
+                                    <td>Orthopedics</td>
+                                    <td>Oct 09, 2026</td>
+                                    <td>11:00 AM</td>
+                                    <td><span class="status confirmed">Confirmed</span></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- DEPARTMENTS -->
+            <div class="page" id="departments">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Departments</h2>
+                        <p>Hospital departments and patient statistics.</p>
+                    </div>
+
+                    <button class="primary-btn">+ Add Department</button>
+                </div>
+
+                <div class="department-grid">
+
+                    <div class="department-box blue-border">
+                        <div class="department-icon blue-icon">❤</div>
+                        <h3>Cardiology</h3>
+                        <p>Heart & cardiovascular care</p>
+                        <div class="department-stat">
+                            <span>Patients</span>
+                            <strong>172</strong>
+                        </div>
+                        <div class="department-stat">
+                            <span>Doctors</span>
+                            <strong>12</strong>
+                        </div>
+                    </div>
+
+                    <div class="department-box green-border">
+                        <div class="department-icon green-icon">🧠</div>
+                        <h3>Neurology</h3>
+                        <p>Brain & nervous system care</p>
+                        <div class="department-stat">
+                            <span>Patients</span>
+                            <strong>128</strong>
+                        </div>
+                        <div class="department-stat">
+                            <span>Doctors</span>
+                            <strong>10</strong>
+                        </div>
+                    </div>
+
+                    <div class="department-box orange-border">
+                        <div class="department-icon orange-icon">🦴</div>
+                        <h3>Orthopedics</h3>
+                        <p>Bones & joint treatment</p>
+                        <div class="department-stat">
+                            <span>Patients</span>
+                            <strong>96</strong>
+                        </div>
+                        <div class="department-stat">
+                            <span>Doctors</span>
+                            <strong>8</strong>
+                        </div>
+                    </div>
+
+                    <div class="department-box purple-border">
+                        <div class="department-icon purple-icon">✦</div>
+                        <h3>Dermatology</h3>
+                        <p>Skin & cosmetic treatment</p>
+                        <div class="department-stat">
+                            <span>Patients</span>
+                            <strong>82</strong>
+                        </div>
+                        <div class="department-stat">
+                            <span>Doctors</span>
+                            <strong>6</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BILLING -->
+            <div class="page" id="billing">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Billing & Payments</h2>
+                        <p>Manage hospital invoices and payments.</p>
+                    </div>
+
+                    <button class="primary-btn">+ Create Invoice</button>
+                </div>
+
+                <div class="stats-grid billing-stats">
+
+                    <div class="stat-card blue">
+                        <p>Total Revenue</p>
+                        <h3>₹8,42,500</h3>
+                        <small>This month</small>
+                    </div>
+
+                    <div class="stat-card green">
+                        <p>Paid</p>
+                        <h3>₹7,18,200</h3>
+                        <small>85.2% collected</small>
+                    </div>
+
+                    <div class="stat-card orange">
+                        <p>Pending</p>
+                        <h3>₹1,24,300</h3>
+                        <small>42 invoices</small>
+                    </div>
+
+                    <div class="stat-card purple">
+                        <p>Invoices</p>
+                        <h3>328</h3>
+                        <small>This month</small>
+                    </div>
+
+                </div>
+
+                <div class="card table-card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Recent Invoices</h3>
+                            <p>Latest billing transactions</p>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Invoice</th>
+                                    <th>Patient</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Payment</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>#INV-7845</td>
+                                    <td>Ananya Singh</td>
+                                    <td>Oct 09, 2026</td>
+                                    <td>₹12,500</td>
+                                    <td>Card</td>
+                                    <td><span class="status confirmed">Paid</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>#INV-7844</td>
+                                    <td>Rajesh Kumar</td>
+                                    <td>Oct 09, 2026</td>
+                                    <td>₹8,750</td>
+                                    <td>UPI</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>#INV-7843</td>
+                                    <td>Priya Shah</td>
+                                    <td>Oct 08, 2026</td>
+                                    <td>₹15,200</td>
+                                    <td>Cash</td>
+                                    <td><span class="status confirmed">Paid</span></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PHARMACY -->
+            <div class="page" id="pharmacy">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Pharmacy</h2>
+                        <p>Medicine inventory and stock management.</p>
+                    </div>
+
+                    <button class="primary-btn">+ Add Medicine</button>
+                </div>
+
+                <div class="card table-card">
+
+                    <div class="table-toolbar">
+                        <div class="table-search">
+                            🔍
+                            <input type="text" placeholder="Search medicines...">
+                        </div>
+
+                        <button class="outline-btn">Export</button>
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Medicine</th>
+                                    <th>Category</th>
+                                    <th>Batch</th>
+                                    <th>Expiry</th>
+                                    <th>Stock</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td><strong>Paracetamol 500mg</strong></td>
+                                    <td>Tablet</td>
+                                    <td>PCM2026A</td>
+                                    <td>Dec 2027</td>
+                                    <td>1,240</td>
+                                    <td>₹2.50</td>
+                                    <td><span class="status confirmed">In Stock</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Amoxicillin 500mg</strong></td>
+                                    <td>Capsule</td>
+                                    <td>AMX2026B</td>
+                                    <td>Jun 2027</td>
+                                    <td>430</td>
+                                    <td>₹6.20</td>
+                                    <td><span class="status confirmed">In Stock</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Azithromycin 250mg</strong></td>
+                                    <td>Tablet</td>
+                                    <td>AZI2026C</td>
+                                    <td>Mar 2027</td>
+                                    <td>48</td>
+                                    <td>₹8.50</td>
+                                    <td><span class="status pending">Low Stock</span></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- STAFF -->
+            <div class="page" id="staff">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Staff</h2>
+                        <p>Hospital staff and employee management.</p>
+                    </div>
+
+                    <button class="primary-btn">+ Add Staff</button>
+                </div>
+
+                <div class="staff-grid">
+
+                    <div class="staff-card">
+                        <div class="staff-avatar blue-bg">AS</div>
+                        <div>
+                            <h3>Arjun Singh</h3>
+                            <p>Head Nurse</p>
+                            <span class="status confirmed">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <div class="staff-avatar purple-bg">PM</div>
+                        <div>
+                            <h3>Priya Menon</h3>
+                            <p>Receptionist</p>
+                            <span class="status confirmed">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <div class="staff-avatar green-bg">RK</div>
+                        <div>
+                            <h3>Rohan Kapoor</h3>
+                            <p>Lab Technician</p>
+                            <span class="status confirmed">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="staff-card">
+                        <div class="staff-avatar orange-bg">SK</div>
+                        <div>
+                            <h3>Sonia Kapoor</h3>
+                            <p>Pharmacist</p>
+                            <span class="status pending">On Leave</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- REPORTS -->
+            <div class="page" id="reports">
+
+                <div class="page-toolbar">
+                    <div>
+                        <h2>Reports</h2>
+                        <p>Hospital analytics and reports.</p>
+                    </div>
+
+                    <button class="primary-btn" id="printReport">Print Report</button>
+                </div>
+
+                <div class="report-grid">
+
+                    <div class="report-card">
+                        <div class="report-icon blue-icon">▥</div>
+                        <h3>Patient Report</h3>
+                        <p>Patient registrations, admissions and discharges.</p>
+                        <button class="outline-btn">Generate Report</button>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-icon green-icon">₹</div>
+                        <h3>Revenue Report</h3>
+                        <p>Monthly revenue, invoices and payment details.</p>
+                        <button class="outline-btn">Generate Report</button>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-icon orange-icon">▣</div>
+                        <h3>Appointment Report</h3>
+                        <p>Appointment schedules and department statistics.</p>
+                        <button class="outline-btn">Generate Report</button>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-icon purple-icon">⚗</div>
+                        <h3>Pharmacy Report</h3>
+                        <p>Medicine stock, sales and inventory details.</p>
+                        <button class="outline-btn">Generate Report</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ADD PATIENT MODAL -->
+<div class="modal-overlay" id="patientModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+            <div>
+                <h2>Add New Patient</h2>
+                <p>Enter patient information below.</p>
+            </div>
+
+            <button class="close-modal" data-close="patientModal">×</button>
+        </div>
+
+        <form id="patientForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="firstName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" id="lastName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" id="patientAge" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select id="patientGender" required>
+                        <option value="">Select gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="patientPhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Department</label>
+                    <select id="patientDepartment" required>
+                        <option value="">Select department</option>
+                        <option>Cardiology</option>
+                        <option>Neurology</option>
+                        <option>Orthopedics</option>
+                        <option>Dermatology</option>
+                        <option>General Medicine</option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label>Email</label>
+                    <input type="email" id="patientEmail">
+                </div>
+
+                <div class="form-group full">
+                    <label>Address</label>
+                    <textarea id="patientAddress" rows="3"></textarea>
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="outline-btn" data-close="patientModal">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn">
+                    Add Patient
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- APPOINTMENT MODAL -->
+<div class="modal-overlay" id="appointmentModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+            <div>
+                <h2>New Appointment</h2>
+                <p>Schedule a patient appointment.</p>
+            </div>
+
+            <button class="close-modal" data-close="appointmentModal">×</button>
+        </div>
+
+        <form id="appointmentForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Patient Name</label>
+                    <input type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Doctor</label>
+                    <select required>
+                        <option value="">Select doctor</option>
+                        <option>Dr. Rajiv Mehta</option>
+                        <option>Dr. Anil Patel</option>
+                        <option>Dr. Sneha Rao</option>
+                        <option>Dr. Neha Joshi</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="time" required>
+                </div>
+
+                <div class="form-group full">
+                    <label>Reason for Visit</label>
+                    <textarea rows="3"></textarea>
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="outline-btn" data-close="appointmentModal">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn">
+                    Schedule Appointment
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+    <span class="toast-icon">✓</span>
+    <div>
+        <strong id="toastTitle">Success</strong>
+        <p id="toastMessage">Operation completed successfully.</p>
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
